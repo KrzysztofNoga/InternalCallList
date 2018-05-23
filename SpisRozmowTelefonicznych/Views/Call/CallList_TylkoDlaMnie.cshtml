@@ -1,0 +1,156 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model SpisRozmowTelefonicznych.ViewModels.PagedListViewModel
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>Spis połączeń telefonicznych</title>
+    <meta name="description" content="Serwis poświęcony spisywaniu przychodzących połączeń telefonicznych" />
+    <meta name="keywords" content="telefon, połączenie, spis, zapis połączeń, numer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="~/Content/Widok.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div id="logo">
+            Spis  połączeń  telefonicznych
+        </div>
+
+        <div id="menu">
+            <div class="option"><a style="color:white;text-decoration:none;" href="@Url.Action("CallList_TylkoDlaMnie","Call")">Moje połączenia</a></div>
+            <div class="option"><a style="color:white;text-decoration:none;" href="@Url.Action("Form","Form")">Dodaj połączenie</a></div>
+            <div class="option"> Pomoc </div>
+            <div>
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"/*, @class = "navbar-right"*/ }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+
+
+                        <div class="logged">
+                            @Html.ActionLink("Witaj, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "Nazwa_uzytkownika" })
+                        </div>
+                        <div class="logged">
+                            <a style="color:white;text-decoration:none;" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
+                        </div>
+                    }
+                }
+
+                else
+                {
+                    <ul @*class="nav navbar-nav navbar-right"*@>
+
+                        @*<li >@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+                    </ul>
+                    @*<br />*@
+                    <div class="logged">
+                        @Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                    </div>
+                }
+
+
+            </div>
+
+
+
+            <div style="clear:both;"></div>
+        </div>
+
+        <div id="sidebar">
+            <div class="optionL"><a style="text-decoration:none;font-weight:bold;color:black" href="@Url.Action("CallList_DataNajnowsze","Call")">Najnowsze</a></div>
+            <div class="optionL"><a style="text-decoration:none;font-weight:bold;color:black" href="@Url.Action("CallList_DataNajstarsze","Call")">Najstarsze</a></div>
+            <div class="optionL"><a style="text-decoration:none;font-weight:bold;color:black" href="@Url.Action("CallList_TylkoDlaMnie","Call")">Tylko do mnie</a></div>
+            <div class="optionL"><a style="text-decoration:none;font-weight:bold;color:black" href="@Url.Action("CallList_OdebranePrzezeMnie","Call")">Odebrane</a></div>
+            <div class="optionL"><a style="text-decoration:none;font-weight:bold;color:black" href="@Url.Action("CallList_StatusTAK","Call")">Wykonane</a></div>
+            <div class="optionL"><a style="text-decoration:none;font-weight:bold;color:black" href="@Url.Action("CallList_StatusNIE","Call")">W trakcie</a></div>
+
+
+
+        </div>
+
+        <div id="content">
+
+            <div style="clear:both"></div>
+            <table width="650" ,@class="navbar-right">
+                <thead>
+                    <tr style="background-color:rgba(144, 144, 144, 0.6)">
+                        <th>Data połączenia</th>
+                        <th>Kto dzwonił</th>
+                        <th>Szczegóły</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var call in Model.ListaPolaczen)
+            {
+                        <tr style="background-color:rgba(144, 144, 144, 0.6)">
+                            <td style="text-align:center"><br />@call.date.ToShortDateString()<br /></td>
+                            <td style="text-align:center"><br />@call.callerName @call.callerLastName<br /></td>
+                            <td style="text-align:center">
+                                <br />
+                                <a style="text-decoration:none; color:black;" href="@Url.Action("CallInfo", "Call", new { idPolaczenia = call.id_call })"> <b>&rarr;</b>  Szczegóły</a>
+                                <br />
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+            <br />
+            <br />
+
+            <div style="text-align:center;list-style-type:none; ">
+
+                @Html.PagedListPager(Model.ListaPolaczen, page => Url.Action("CallList_TylkoDlaMnie", new { page }))
+                @Styles.Render("~/Content/PagedList.css")
+            </div>
+            <div style="text-align:center;list-style-type:none;">
+                Page @(Model.ListaPolaczen.PageCount < Model.ListaPolaczen.PageNumber ? 0 : Model.ListaPolaczen.PageNumber) of @Model.ListaPolaczen.PageCount
+                @Styles.Render("~/Content/PagedList.css")
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+        <div id="footer">
+            Spis połączeń telefonicznych dla firm. Strona w sieci od 2017r. &copy; Wszelkie prawa zastrzeżone
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+
+
+
+
+
+</html>

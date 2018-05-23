@@ -1,0 +1,53 @@
+﻿@model SpisRozmowTelefonicznych.ViewModels.LoginViewModels
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+@{
+    ViewBag.Title = "Logowanie do serwisu";
+}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="row">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            @using (Html.BeginForm("LoginView", "Auth", FormMethod.Post, new { @class = "form-signin" }))
+            {
+                <span id="reauth-email" class="reauth-email"></span>
+                @Html.TextBoxFor(m => m.e_mail, new
+           {
+               @class = "form-control",
+               placeholder = "Nazwa użytkownika",
+               required = String.Empty,
+               autofocus = String.Empty
+
+           })
+                @Html.PasswordFor(m => m.password, new
+           {
+               @class = "form-control",
+               placeholder = "Hasło",
+               required = String.Empty
+           })
+
+                if (TempData["LoginErrorMessage"] != null)
+                {
+                    <div class="login-error-message">@TempData["LoginErrorMessage"]</div>
+                }
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div id="remember" class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(m => m.rememberMe) Zapamiętaj mnie
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 forgot-password-col">
+                        @Html.ActionLink("Zapomniałeś hasło?", "Index", "ResetPassword", null, new { @class = "forgot-password" })
+                    </div>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Zaloguj się</button>
+            }
+        </div>
+    </div>
+</div>

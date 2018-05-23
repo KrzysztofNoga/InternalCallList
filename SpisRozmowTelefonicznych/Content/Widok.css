@@ -1,0 +1,259 @@
+﻿html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, /*nav,*/ section, summary,
+time, mark, audio, video {
+   
+    list-style-type: none;
+     
+}
+
+
+
+
+body {
+    background-color: #404040;
+    font-family: 'Lato',sans-serif;
+    list-style-type:none;
+    
+}
+
+#container
+{   
+    width: 1000px;
+    margin-left :auto;
+    margin-right: auto;
+ 
+
+}
+
+#logo 
+{
+    background-color: black;
+    color: white;
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-align: center;
+    padding:10px;
+    
+    
+
+
+}
+
+#menu 
+{
+    margin-top:10px;
+    background-color: #4cd90f;
+    color: white;
+    font-weight:bold;
+    /*border: 2px solid black;*/
+   
+}
+
+#menu_Logowanie {
+    min-width: 50px;
+    height: 25px;
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #4cd90f;
+    color: white;
+    font-weight: bold;
+}
+
+
+#sidebar {
+    color: black;
+    margin-top: 10px;
+    float: left;
+    width: 150px;
+    min-height: 620px;
+    padding: 20px;
+    background-color: lightgray;
+    text-align: center;
+    font-size: 18px;
+    text-decoration:none;
+
+    /*border-right: 2px solid black;*/
+}
+
+#content
+{   margin-top:10px;
+    float:left;
+    padding:40px;
+    width: 730px;
+    background-color:#dedede;
+    min-height:580px;
+    text-align:justify;
+    list-style-type:none;
+    
+
+}
+#NaglowekData {
+    font-size:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    float: left;
+    width: 228px;
+    height:40px;
+    text-align: center;
+    border: 1px solid black;
+    
+    font-weight: bold;
+}
+
+#NaglowekKtoDzwonil {
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+    width: 228px;
+    height: 40px;
+    margin-left: 20px;
+    text-align: center;
+    border: 1px solid black;
+    font-weight: bold;
+}
+#NaglowekSzczegoly {
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+    width: 148px;
+    height: 40px;
+    margin-left: 20px;
+    text-align: center;
+    border: 1px solid black;
+ 
+    font-weight: bold;
+}
+
+#content_Logowanie {
+    margin-top: 10px;
+    float: left;
+    padding: 40px;
+    width: 920px;
+    background-color: #dedede;
+    min-height: 580px;
+    text-align: justify;
+}
+
+
+#footer {
+    clear: both;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    background-color: black;
+    font-weight: bold;
+}
+
+#okno_logowania {
+    font-size: 18px;
+    background-color: lightgray;
+    width: 300px;
+    padding:50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:100px;
+    -webkit-box-shadow: 5px 5px 35px 7px rgba(0,0,0,0.9);
+    -moz-box-shadow: 5px 5px 35px 7px rgba(0,0,0,0.9);
+    box-shadow: 5px 5px 35px 7px rgba(0,0,0,0.9);
+    
+}
+
+.option {
+    float: left;
+    min-width: 50px;
+    height: 25px;
+    font-size: 18px;
+    padding: 10px;
+    border-right: 2px solid black;
+    /*opacity:0.8;*/
+}
+.option:hover
+{
+    background-color: #4cff00;
+    cursor: pointer;
+}
+.optionL
+{   color:black;
+    text-decoration:none;
+    font-size:18px;
+    height:25px;
+    padding:10px;
+    border-bottom:2px solid black;
+
+}
+.optionL:hover 
+{
+    background-color: #b9b2b2;
+    cursor:pointer;
+    color:white;
+}
+
+.logged 
+{
+    float: right;
+    min-width: 50px;
+    height: 25px;
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    padding-right:20px;
+    padding-left:10px;
+    border-left:2px solid black;
+
+    
+}
+
+ 
+.logged:hover 
+{
+        background-color: #4cff00;
+        cursor: pointer;
+}
+
+.Nazwa_uzytkownika
+{
+    text-decoration:none;
+    color:white;
+}
+ 
+input[type=text],
+input[type=password] {
+    width: 300px;
+    background: #efefef;
+    color: #666;
+    border: 2px solid #404040;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+input[type=submit] 
+{
+    width: 300px;
+    background-color: #4cd90f;
+    font-size: 20px;
+    color: white;
+    padding: 15px 10px;    
+    border-radius: 5px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    border: 2px solid #404040;
+}
+    input[type=submit]:hover 
+    {
+        background-color: #4cff00;
+    }

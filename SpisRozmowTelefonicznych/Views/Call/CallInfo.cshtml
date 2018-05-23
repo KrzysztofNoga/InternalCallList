@@ -1,0 +1,146 @@
+﻿@*@model SpisRozmowTelefonicznych.ViewModels.SzczegolyPolaczeniaViewModel
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "CallInfo";
+}
+@using (@Html.BeginForm("CallInfo", "Call"))
+{
+<p><b>Data polaczenia: </b>@Model.DataPolaczeia</p> 
+<p><b>Data dodania: </b>@Model.DataDodania</p> 
+<p><b>Imie i nazwisko osoby/nazwa firmy która dzwoniła: </b>@Model.ImieDzwoniacego @Model.NazwiskoDzwoniacego</p>
+<p><b>Numer telefonu z którego przyszło połączenie: </b>@Model.NumerDzwoniacego</p>
+ @Html.HiddenFor(x=>x.callID)
+<p><b>Opis rozmowy:<br></b>@Model.Opis</p>
+<p><b>Imie i nazwisko osoby która odebrała połączenie: </b>@Model.ImieOdbierajacego @Model.NazwiskoOdbierajacego</p>
+<p><b>Numer telefonu osoby która odebrała połączenie: </b>@Model.NumerOdbierajacego</p>@Html.HiddenFor(x=>x.NumerOdbierajacego)
+<p><b>Czy cel rozmowy został zrealizowany?: </b>@Model.StatusString</p>
+
+@Html.CheckBoxFor(Model => Model.StatusSprawy)
+<input type="submit" value="Edytuj" class="submitLink" style="height: 40px;" /> 
+}*@
+ 
+@model SpisRozmowTelefonicznych.ViewModels.SzczegolyPolaczeniaViewModel
+
+
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>Spis połączeń telefonicznych</title>
+    <meta name="description" content="Serwis poświęcony spisywaniu przychodzących połączeń telefonicznych" />
+    <meta name="keywords" content="telefon, połączenie, spis, zapis połączeń, numer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="~/Content/Widok.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div id="logo">
+            Spis  połączeń  telefonicznych
+        </div>
+
+        <div id="menu">
+            <div class="option"><a style="color:white;text-decoration:none;" href="@Url.Action("CallList_TylkoDlaMnie","Call")">Moje połączenia</a></div>
+            <div class="option"><a style="color:white;text-decoration:none;" href="@Url.Action("Form","Form")">Dodaj połączenie</a></div>
+            <div class="option"> Pomoc </div>
+            <div>
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"/*, @class = "navbar-right"*/ }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+
+
+                        <div class="logged">
+                            @Html.ActionLink("Witaj, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "Nazwa_uzytkownika" })
+                        </div>
+                        <div class="logged">
+                            <a style="color:white;text-decoration:none;" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
+                        </div>
+                    }
+                }
+
+                else
+                {
+                    <ul @*class="nav navbar-nav navbar-right"*@>
+
+                        @*<li >@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+                    </ul>
+                                @*<br />*@
+                                <div class="logged">
+                                    @Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                                </div>
+                }
+
+
+            </div>
+
+
+
+            <div style="clear:both;"></div>
+        </div>
+
+     
+
+        <div id="content">
+
+          @using (@Html.BeginForm("CallInfo", "Call"))
+          {
+            <p><b>Data polaczenia: </b>@Model.DataPolaczeia</p>
+            <p><b>Data dodania: </b>@Model.DataDodania</p>
+            <p><b>Imie i nazwisko osoby/nazwa firmy która dzwoniła: </b>@Model.ImieDzwoniacego @Model.NazwiskoDzwoniacego</p>
+            <p><b>Numer telefonu z którego przyszło połączenie: </b>@Model.NumerDzwoniacego</p>
+            @Html.HiddenFor(x => x.callID)
+            <p><b>Opis rozmowy:<br></b>@Model.Opis</p>
+            <p><b>Imie i nazwisko osoby która odebrała połączenie: </b>@Model.ImieOdbierajacego @Model.NazwiskoOdbierajacego</p>
+            <p><b>Numer telefonu osoby która odebrała połączenie: </b>@Model.NumerOdbierajacego</p>@Html.HiddenFor(x => x.NumerOdbierajacego)
+            <p><b>Czy cel rozmowy został zrealizowany?: </b>@Model.StatusString</p>
+
+            @Html.CheckBoxFor(Model => Model.StatusSprawy)
+            <input type="submit" value="Edytuj"; />
+
+
+
+
+
+
+          }
+        </div>
+
+        <div id="footer">
+            Spis połączeń telefonicznych dla firm. Strona w sieci od 2017r. &copy; Wszelkie prawa zastrzeżone
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+
+
+
+
+
+</html>
+
+
+
+
+
+

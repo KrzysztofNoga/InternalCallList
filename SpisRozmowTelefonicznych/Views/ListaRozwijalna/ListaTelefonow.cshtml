@@ -1,0 +1,9 @@
+﻿@model SpisRozmowTelefonicznych.ViewModels.ListPhoneView
+@{
+    ViewBag.Title = "ListaTelefonow";
+}
+
+<h2>ListaTelefonow</h2>
+
+@Html.DropDownListFor(x => x.Telefony,(IEnumerable<SelectListItem>)Model.Telefony,"Telefony")
+@*@Html.DropDownList("Last Ten yers", Model.Telefony, "lala");*@

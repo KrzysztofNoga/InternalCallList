@@ -1,0 +1,327 @@
+﻿@*@model SpisRozmowTelefonicznych.ViewModels.FormularzViewModel
+
+@{  ViewBag.Title = "Formularz";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+
+<div>
+
+    @using (@Html.BeginForm("Form", "Form"))
+    {
+         
+
+         
+
+        <table id="login-table" style="margin-left: 50px; margin-right: 50px;">
+
+            <tr>
+                <td>@Html.LabelFor(o => o.PHONE_NUMBER_CALLER, "Numer telefonu z którego połączenie przyszło")</td>
+                <td>
+                    @Html.TextBoxFor(o => o.PHONE_NUMBER_CALLER)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.PHONE_NUMBER_CALLER)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(o => o.PHONE_NUMBER, "Numer telefonu na który połączenie przyszło")</td>
+                <td>
+                    @Html.TextBoxFor(o => o.PHONE_NUMBER)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.PHONE_NUMBER)
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(o =>o.Date,"Data")</td>
+                <td>
+                    @Html.TextBoxFor(o => o.Date)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.Date)
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(o =>o.NameCaller, "Imie osoby dzwoniącej")</td>
+                <td>
+                    @Html.TextBoxFor(o => o.NameCaller)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.NameCaller)
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(o => o.LastNaemCaller, "Nazwisko osoby dzwoniącej")</td>
+                <td>
+                    @Html.TextBoxFor(o => o.LastNaemCaller)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.LastNaemCaller)
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(o => o.Description, "Opis")</td>
+                <td>
+                    @Html.TextBoxFor(o => o.Description)
+
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.Description)
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td colspan="3">*@
+                    @*<div class="checkbox" style="margin-bottom: 10px;">
+                        @Html.CheckBoxFor(m => m.rememberMe, new { @checked = "checked" })
+                        @Html.LabelFor(m => m.rememberMe)
+                    </div>*@
+                       @*<a style="height: 40px" herf="@Url.Action("Zapisz","Form")">Zapisz</a>*@
+                       @*<input type="submit" value="Zapisz" class="submitLink" style="height: 40px;"  /> 
+                </td>
+            </tr>
+
+            @Html.DropDownListFor(m => m.SelectedDoKogo, (IEnumerable<SelectListItem>)Model.DoKogo, "DoKogo")
+          
+        </table>*@
+
+        @*@Html.DropDownList(m => m.Model.Provice, m.Phones, new { @class = "dropdown" }*@
+        @*<form action="...">
+            <select name="nazwa">
+                <option>@Html.</option>
+                <option>Tu wpisz drugą możliwość</option>
+                (...)
+            </select>
+        </form>*@
+    
+@*</div>*@
+@*@section Scripts
+{
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}*@
+
+
+
+
+
+@model SpisRozmowTelefonicznych.ViewModels.FormularzViewModel
+
+
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <title>Spis połączeń telefonicznych</title>
+    <meta name="description" content="Serwis poświęcony spisywaniu przychodzących połączeń telefonicznych" />
+    <meta name="keywords" content="telefon, połączenie, spis, zapis połączeń, numer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="~/Content/DodajPolaczenie.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div id="logo">
+            Spis  połączeń  telefonicznych
+        </div>
+
+        <div id="menu">
+            <div class="option"><a style="color:white;text-decoration:none;" href="@Url.Action("CallList_TylkoDlaMnie","Call")">Moje połączenia</a></div>
+            <div class="option"><a style="color:white;text-decoration:none;" href="@Url.Action("Form","Form")">Dodaj połączenie</a></div>
+            <div class="option"> Pomoc </div>
+            <div>
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"/*, @class = "navbar-right"*/ }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+
+
+                        <div class="logged">
+                            @Html.ActionLink("Witaj, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "Nazwa_uzytkownika" })
+                        </div>
+                        <div class="logged">
+                            <a style="color:white;text-decoration:none;" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
+                        </div>
+                    }
+                }
+
+                else
+                {
+                    <ul @*class="nav navbar-nav navbar-right"*@>
+
+                        @*<li >@Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+                    </ul>
+                    @*<br />*@
+                    <div class="logged">
+                        @Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                    </div>
+                }
+
+
+            </div>
+
+
+
+            <div style="clear:both;"></div>
+        </div>
+
+
+
+        <div id="content_Form">
+
+            @*@using (@Html.BeginForm("Form", "Form"))
+                {
+
+                @Html.LabelFor(o => o.PHONE_NUMBER_CALLER, "Numer telefonu z którego przyszło połączenie")
+                    <br />
+
+                @Html.TextBoxFor(o => o.PHONE_NUMBER_CALLER)
+                <div class="login-validation-message">
+                    @Html.ValidationMessageFor(o => o.PHONE_NUMBER_CALLER)
+                </div>*@
+            @using (@Html.BeginForm("Form", "Form"))
+            {
+            <div id="LContent">
+                <div id="OpisdoPola">
+                    @Html.LabelFor(o => o.PHONE_NUMBER_CALLER, "Numer telefonu z którego przyszło połączenie:")
+
+                </div>
+                <div id="PoleFormularza">
+                    @Html.TextBoxFor(o => o.PHONE_NUMBER_CALLER)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.PHONE_NUMBER_CALLER)
+                    </div>
+
+                </div>
+
+                <div id="OpisdoPola">
+                    @Html.LabelFor(o => o.PHONE_NUMBER, "Numer telefonu na który przyszło połączenie:")
+
+                </div>
+                <div id="PoleFormularza">
+                    @*@Html.DropDownListFor(m =>m.SelectedTelefon, (IEnumerable<SelectListItem>)Model.TelefonyUsera, " ", new { @class = "ddl" })*@
+                    @Html.TextBoxFor(o => o.PHONE_NUMBER)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.PHONE_NUMBER)
+                    </div>
+                     
+                    
+                </div>
+
+                <div id="OpisdoPola">
+                    @Html.LabelFor(o => o.Date, "Data połączenia(miesiąc/dzień/rok):")
+
+                </div>
+                <div id="PoleFormularza">
+                    @Html.TextBoxFor(o => o.Date, new { placeholder = "mm/dd/yyyy" })
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.Date)
+                    </div>
+
+                </div>
+
+                <div id="OpisdoPola">
+                    @Html.LabelFor(o => o.NameCaller, "Imię osoby dzwoniącej:")
+
+                </div>
+                <div id="PoleFormularza">
+                    @Html.TextBoxFor(o => o.NameCaller)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.NameCaller)
+                    </div>
+
+                </div>
+
+                <div id="OpisdoPola">
+                    @Html.LabelFor(o => o.LastNaemCaller, "Nazwisko osoby dzwoniącej:")
+
+                </div>
+                <div id="PoleFormularza">
+                    @Html.TextBoxFor(o => o.LastNaemCaller)
+                    <div class="login-validation-message">
+                        @Html.ValidationMessageFor(o => o.LastNaemCaller)
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="PContent">
+                <div id="OpisdoPola">
+                    @Html.LabelFor(o => o.DoKogo, "Wybierz osobę do której skierowany był cel rozmowy")
+                </div>
+                <div id="PoleFormularza">
+                    @Html.DropDownListFor(m => m.SelectedDoKogo, (IEnumerable<SelectListItem>)Model.DoKogo, " ", new { @class = "ddl" })
+                </div>
+                </div>
+
+            <div id="OpisdoPola">
+                @Html.LabelFor(o => o.Description, "Czego dotyczyła rozmowa?")
+
+            </div>
+            <div id="PoleFormularza">
+                @Html.TextAreaFor(o => o.Description)
+                <div class="login-validation-message">
+                    @Html.ValidationMessageFor(o => o.Description)
+                </div>
+
+            </div>
+
+
+            <input style="float:right;" type="submit" value="Zapisz"  />
+
+
+
+
+
+            }
+        </div>
+
+        <div id="footer">
+            Spis połączeń telefonicznych dla firm. Strona w sieci od 2017r. &copy; Wszelkie prawa zastrzeżone
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+
+
+
+
+
+</html>
+@section Scripts
+{
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+
